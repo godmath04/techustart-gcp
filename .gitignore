@@ -1,0 +1,21 @@
+# Terraform state (contiene info sensible de la infraestructura)
+terraform.tfstate
+terraform.tfstate.backup
+
+# Directorio de plugins descargados por terraform init
+.terraform/
+.terraform.lock.hcl
+
+# Variables con credenciales o secretos
+*.tfvars
+*.tfvars.json
+
+# Archivos de override (uso local)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Crash logs de Terraform
+crash.log
+crash.*.log
