@@ -46,8 +46,10 @@ Definidas en `variables.tf`:
 
 | Variable | Tipo | Valor por defecto | Descripcion |
 |---|---|---|---|
+| `gcp_project` | string | **(requerido)** | ID del proyecto en GCP |
 | `gcp_region` | string | `us-central1` | Region donde se despliegan los recursos |
 | `tipo_instancia` | string | `e2-micro` | Tipo de maquina virtual (capa gratuita) |
+| `ssh_public_key_path` | string | `~/.ssh/id_rsa.pub` | Ruta a la llave publica SSH |
 
 ---
 
@@ -80,14 +82,20 @@ Esto instala el servidor web Apache sin intervencion manual.
 terraform init
 
 # 2. Verificar los recursos que se van a crear
-terraform plan
+terraform plan -var="gcp_project=TU-PROYECTO-ID"
 
 # 3. Desplegar la infraestructura
-terraform apply
+terraform apply -var="gcp_project=TU-PROYECTO-ID"
 
 # 4. Eliminar todos los recursos al terminar
-terraform destroy
+terraform destroy -var="gcp_project=TU-PROYECTO-ID"
 ```
+
+> Tambien crear un archivo `terraform.tfvars` (no se sube a git) con el contenido:
+> ```
+> gcp_project = "TU-PROYECTO-ID"
+> ```
+> Y ejecutar `terraform apply` sin el flag `-var`.
 
 ---
 

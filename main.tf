@@ -10,7 +10,7 @@ terraform {
 
 # Proveedor GCP de Google. Requiere el project porque se organiza por poryecto
 provider "google" {
-  project = "techustart-luis-2026"
+  project = var.gcp_project
   region  = var.gcp_region
 }
 
@@ -86,7 +86,7 @@ resource "google_compute_instance" "vm_linux" {
   metadata_startup_script = "sudo apt update && sudo apt install apache2 -y"
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa_gcp_techustart.pub")}"
+    ssh-keys = "ubuntu:${file(var.ssh_public_key_path)}"
   }
 }
 
